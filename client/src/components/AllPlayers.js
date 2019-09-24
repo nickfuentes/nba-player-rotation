@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
 import { Form, Button, Card, Table, Container, Row, Col } from "react-bootstrap"
+import AddPlayer from "./AddPlayer"
 
 function AllPlayers() {
   const [players, setPlayers] = useState([])
@@ -15,13 +16,17 @@ function AllPlayers() {
     })
   }
 
+  const addPlayer = () => {
+    console.log("Adding Player To Builder Component!")
+  }
+
   return (
     <div>
       <Container>
         <Row>
           <Col>
             <div>
-              <Form>
+              <Form className="search-input">
                 <Form.Group>
                   <Form.Label placeholder="Search For Players">
                     Search For Players
@@ -89,7 +94,13 @@ function AllPlayers() {
                         </tr>
                       </tbody>
                     </Table>
-                    <Button>Add Player</Button>
+                    <Button
+                      onClick={() => {
+                        addPlayer()
+                      }}
+                    >
+                      Add Player
+                    </Button>
                   </div>
                 </Col>
               </Row>
