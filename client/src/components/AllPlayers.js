@@ -23,8 +23,10 @@ function AllPlayers() {
             <div>
               <Form>
                 <Form.Group>
-                  <Form.Label>Search for your players</Form.Label>
-                  <Form.Control />
+                  <Form.Label placeholder="Search For Players">
+                    Search For Players
+                  </Form.Label>
+                  <Form.Control placeholder="Search For Players" />
                 </Form.Group>
                 <Button variant="primary" type="submit">
                   Submit
