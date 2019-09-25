@@ -1,10 +1,13 @@
 import React from "react"
+import { Container } from "react-bootstrap"
 
 function Favorites() {
   return (
-    <div>
-      <h1>Favorites Component</h1>
-    </div>
+    <Container>
+      <div>
+        <h1>Favorites Component</h1>
+      </div>
+    </Container>
   )
 }
 
