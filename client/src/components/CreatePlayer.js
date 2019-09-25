@@ -6,18 +6,18 @@ function CreatePlayer() {
   const [playerFirstName, setPlayerFirstName] = useState("")
   const [playerLastName, setPlayerLastName] = useState("")
   const [playerTeamName, setPlayerTeamName] = useState("")
-  const [playerNumber, setPlayerNumber] = useState("")
+  const [playerNumber, setPlayerNumber] = useState(0)
   const [playerPosition, setPlayerPosition] = useState("")
-  const [playerFG, setPlayerFG] = useState("")
-  const [playerThreeP, setPlayerThreeP] = useState("")
-  const [playerFT, setPlayerFT] = useState("")
-  const [playerREB, setPlayerREB] = useState("")
-  const [playerAST, setPlayerAST] = useState("")
-  const [playerBLK, setPlayerBLK] = useState("")
-  const [playerSTL, setPlayerSTL] = useState("")
-  const [playerPF, setPlayerPF] = useState("")
-  const [playerTO, setPlayerTO] = useState("")
-  const [playerPTS, setPlayerPTS] = useState("")
+  const [playerFG, setPlayerFG] = useState(0)
+  const [playerThreeP, setPlayerThreeP] = useState(0)
+  const [playerFT, setPlayerFT] = useState(0)
+  const [playerREB, setPlayerREB] = useState(0)
+  const [playerAST, setPlayerAST] = useState(0)
+  const [playerBLK, setPlayerBLK] = useState(0)
+  const [playerSTL, setPlayerSTL] = useState(0)
+  const [playerPF, setPlayerPF] = useState(0)
+  const [playerTO, setPlayerTO] = useState(0)
+  const [playerPTS, setPlayerPTS] = useState(0)
   const [playerPhotoUrl, setPlayerPhotoUrl] = useState("")
 
   const firstNameHandleTextBoxChange = e => {
@@ -115,7 +115,7 @@ function CreatePlayer() {
               <Form.Control
                 name="firstName"
                 type="text"
-                onChange={() => firstNameHandleTextBoxChange}
+                onChange={firstNameHandleTextBoxChange}
               />
             </Form.Group>
 
@@ -124,7 +124,7 @@ function CreatePlayer() {
               <Form.Control
                 name="lastName"
                 type="text"
-                onChange={() => lastNameHandleTextBoxChange}
+                onChange={lastNameHandleTextBoxChange}
               />
             </Form.Group>
 
@@ -133,7 +133,7 @@ function CreatePlayer() {
               <Form.Control
                 name="teamName"
                 type="text"
-                onChange={() => teamNameHandleTextBoxChange}
+                onChange={teamNameHandleTextBoxChange}
               />
             </Form.Group>
           </Form.Row>
@@ -144,7 +144,7 @@ function CreatePlayer() {
               <Form.Control
                 name="playerNumber"
                 type="text"
-                onChange={() => playerNumberHandleTextBoxChange}
+                onChange={playerNumberHandleTextBoxChange}
               />
             </Form.Group>
 
@@ -153,7 +153,7 @@ function CreatePlayer() {
               <Form.Control
                 name="position"
                 type="text"
-                onChange={() => positionHandleTextBoxChange}
+                onChange={positionHandleTextBoxChange}
               />
             </Form.Group>
 
@@ -162,7 +162,7 @@ function CreatePlayer() {
               <Form.Control
                 name="fg"
                 type="text"
-                onChange={() => fgHandleTextBoxChange}
+                onChange={fgHandleTextBoxChange}
               />
             </Form.Group>
           </Form.Row>
@@ -173,7 +173,7 @@ function CreatePlayer() {
               <Form.Control
                 name="threep"
                 type="text"
-                onChange={() => threePHandleTextBoxChange}
+                onChange={threePHandleTextBoxChange}
               />
             </Form.Group>
 
@@ -182,7 +182,7 @@ function CreatePlayer() {
               <Form.Control
                 name="ft"
                 type="text"
-                onChange={() => ftHandleTextBoxChange}
+                onChange={ftHandleTextBoxChange}
               />
             </Form.Group>
 
@@ -191,7 +191,7 @@ function CreatePlayer() {
               <Form.Control
                 name="reb"
                 type="text"
-                onChange={() => rebHandleTextBoxChange}
+                onChange={rebHandleTextBoxChange}
               />
             </Form.Group>
           </Form.Row>
@@ -202,7 +202,7 @@ function CreatePlayer() {
               <Form.Control
                 name="ast"
                 type="text"
-                onChange={() => astHandleTextBoxChange}
+                onChange={astHandleTextBoxChange}
               />
             </Form.Group>
 
@@ -211,7 +211,7 @@ function CreatePlayer() {
               <Form.Control
                 name="blk"
                 type="text"
-                onChange={() => blkHandleTextBoxChange}
+                onChange={blkHandleTextBoxChange}
               />
             </Form.Group>
 
@@ -220,7 +220,7 @@ function CreatePlayer() {
               <Form.Control
                 name="stl"
                 type="text"
-                onChange={() => stlHandleTextBoxChange}
+                onChange={stlHandleTextBoxChange}
               />
             </Form.Group>
           </Form.Row>
@@ -231,7 +231,7 @@ function CreatePlayer() {
               <Form.Control
                 name="pf"
                 type="text"
-                onChange={() => pfHandleTextBoxChange}
+                onChange={pfHandleTextBoxChange}
               />
             </Form.Group>
 
@@ -240,7 +240,7 @@ function CreatePlayer() {
               <Form.Control
                 name="to"
                 type="text"
-                onChange={() => toHandleTextBoxChange}
+                onChange={toHandleTextBoxChange}
               />
             </Form.Group>
 
@@ -249,7 +249,7 @@ function CreatePlayer() {
               <Form.Control
                 name="pts"
                 type="text"
-                onChange={() => ptsHandleTextBoxChange}
+                onChange={ptsHandleTextBoxChange}
               />
             </Form.Group>
           </Form.Row>
@@ -260,7 +260,7 @@ function CreatePlayer() {
               <Form.Control
                 name="photoUrl"
                 type="text"
-                onChange={() => photoUrlHandleTextBoxChange}
+                onChange={photoUrlHandleTextBoxChange}
               />
             </Form.Group>
           </Form.Row>
