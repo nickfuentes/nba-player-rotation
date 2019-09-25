@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
-import { Form, Button, Card, Table, Container, Row, Col } from "react-bootstrap"
+import {
+  Form,
+  Button,
+  Card,
+  Table,
+  Container,
+  Row,
+  Col,
+  Jumbotron
+} from "react-bootstrap"
 
 function AllPlayers() {
   const [players, setPlayers] = useState([])
@@ -25,17 +34,22 @@ function AllPlayers() {
         <Row>
           <Col>
             <div>
-              <Form className="search-input">
-                <Form.Group>
-                  <Form.Label placeholder="Search For Players">
-                    Search For Players
-                  </Form.Label>
-                  <Form.Control placeholder="Search For Players" />
-                </Form.Group>
-                <Button variant="primary" type="submit">
-                  Submit
-                </Button>
-              </Form>
+              <Jumbotron fluid>
+                <Container>
+                  <h1>Search For A Player</h1>
+                  <p>
+                    You can type in your players name or search by team name.
+                  </p>
+                  <Form className="search-input">
+                    <Form.Group>
+                      <Form.Control placeholder="Search For Players" />
+                    </Form.Group>
+                    <Button variant="primary" type="submit">
+                      Submit
+                    </Button>
+                  </Form>
+                </Container>
+              </Jumbotron>
             </div>
           </Col>
         </Row>
@@ -53,8 +67,16 @@ function AllPlayers() {
                             {player.firstName} {player.lastName}
                           </span>
                         </Card.Title>
-                        <Card.Text>{player.teamName}</Card.Text>
-                        <Card.Text>#{player.playerNumber}</Card.Text>
+                        <Card.Text>
+                          <strong>Team:</strong> {player.teamName}
+                        </Card.Text>
+                        <Card.Text>
+                          <strong>Position:</strong> {player.position}
+                        </Card.Text>
+                        <Card.Text>
+                          <strong>Jersey #: </strong>
+                          {player.playerNumber}
+                        </Card.Text>
                       </Card.Body>
                     </Card>
                   </div>
@@ -64,7 +86,7 @@ function AllPlayers() {
                     <Table responsive>
                       <thead>
                         <tr>
-                          <th>#</th>
+                          <th>STATS</th>
                           <th>FG%</th>
                           <th>3P%</th>
                           <th>FT%</th>
@@ -79,7 +101,7 @@ function AllPlayers() {
                       </thead>
                       <tbody>
                         <tr>
-                          <td></td>
+                          <td>Regular Season</td>
                           <td>{player.fg}</td>
                           <td>{player.threep}</td>
                           <td>{player.ft}</td>
@@ -94,6 +116,7 @@ function AllPlayers() {
                       </tbody>
                     </Table>
                     <Button
+                      className="add-player-button"
                       onClick={() => {
                         addPlayer()
                       }}

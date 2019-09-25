@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import "../App.css"
-import { Navbar, Nav, Image } from "react-bootstrap"
+import { Navbar, Nav, Image, Container } from "react-bootstrap"
 
 export class Menu extends Component {
   render() {
@@ -16,6 +16,8 @@ export class Menu extends Component {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
+              <Nav.Link href="/">Search For Players</Nav.Link>
+              <Nav.Link href="/rotation-builder">Roation Builder</Nav.Link>
               <Nav.Link href="/create-player">Create Player</Nav.Link>
               <Nav.Link href="/favorites">Favorite Rotations</Nav.Link>
             </Nav>
@@ -24,11 +26,13 @@ export class Menu extends Component {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-        <Image
-          className="banner-img"
-          src="https://www.nba.com/rockets/sites/rockets/files/201920-0148_on_sale-web1148x442.jpg?cw=1140&ch=442&w=1148&h=442&x=4&y=0"
-          fluid
-        />
+        <Container>
+          <Image
+            className="banner-img"
+            src="https://www.nba.com/rockets/sites/rockets/files/201920-0148_on_sale-web1148x442.jpg?cw=1140&ch=442&w=1148&h=442&x=4&y=0"
+            fluid
+          />
+        </Container>
       </div>
     )
   }

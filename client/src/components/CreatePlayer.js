@@ -1,8 +1,8 @@
 import React, { useState } from "react"
-import { Form, Col, Button, Container } from "react-bootstrap"
+import { Form, Col, Button, Container, Jumbotron } from "react-bootstrap"
 import axios from "axios"
 
-function CreatePlayer() {
+function CreatePlayer(props) {
   const [playerFirstName, setPlayerFirstName] = useState("")
   const [playerLastName, setPlayerLastName] = useState("")
   const [playerTeamName, setPlayerTeamName] = useState("")
@@ -84,30 +84,44 @@ function CreatePlayer() {
     setPlayerPhotoUrl(e.target.value)
   }
 
-  const handleSaveCreatedPlayer = () => {
-    axios.post("http://localhost:3001/create-player", {
-      firstName: playerFirstName,
-      lastName: playerLastName,
-      teamName: playerTeamName,
-      playerNumber: playerNumber,
-      position: playerPosition,
-      fg: playerFG,
-      threep: playerThreeP,
-      ft: playerFT,
-      reb: playerREB,
-      ast: playerAST,
-      blk: playerBLK,
-      stl: playerSTL,
-      pf: playerPF,
-      to: playerTO,
-      pts: playerPTS,
-      photoUrl: playerPhotoUrl
-    })
+  const handleSaveCreatedPlayer = e => {
+    e.preventDefault()
+    axios
+      .post("http://localhost:3001/create-player", {
+        firstName: playerFirstName,
+        lastName: playerLastName,
+        teamName: playerTeamName,
+        playerNumber: playerNumber,
+        position: playerPosition,
+        fg: playerFG,
+        threep: playerThreeP,
+        ft: playerFT,
+        reb: playerREB,
+        ast: playerAST,
+        blk: playerBLK,
+        stl: playerSTL,
+        pf: playerPF,
+        to: playerTO,
+        pts: playerPTS,
+        photoUrl: playerPhotoUrl
+      })
+      .then(() => {
+        props.history.push("/")
+      })
   }
 
   return (
     <div>
       <Container>
+        <Jumbotron fluid>
+          <Container>
+            <h1>Create A Player</h1>
+            <p>
+              Add a player that is missing or a player you are currently playing
+              with and create the best rotations.
+            </p>
+          </Container>
+        </Jumbotron>
         <Form className="create-player-form">
           <Form.Row>
             <Form.Group as={Col}>
