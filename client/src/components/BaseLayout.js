@@ -16,7 +16,7 @@ export class Menu extends Component {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
-              <Nav.Link href="/add-player">Add Player</Nav.Link>
+              <Nav.Link href="/create-player">Create Player</Nav.Link>
               <Nav.Link href="/favorites">Favorite Rotations</Nav.Link>
             </Nav>
             <Nav>

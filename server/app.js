@@ -14,7 +14,7 @@ app.get("/", (req, res) => {
 })
 
 // Adds Player To Database
-app.post("/add-player", (req, res) => {
+app.post("/create-player", (req, res) => {
   let firstName = req.body.firstName
   let lastName = req.body.lastName
   let teamName = req.body.teamName

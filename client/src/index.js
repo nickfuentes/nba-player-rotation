@@ -6,7 +6,7 @@ import * as serviceWorker from "./serviceWorker"
 import "bootstrap/dist/css/bootstrap.min.css"
 import { BrowserRouter, Route, Switch } from "react-router-dom"
 import AllPlayers from "./components/AllPlayers"
-import AddPlayer from "./components/AddPlayer"
+import CreatePlayer from "./components/CreatePlayer"
 import Favorites from "./components/Favorites"
 
 ReactDOM.render(
@@ -14,7 +14,7 @@ ReactDOM.render(
     <BaseLayout>
       <Switch>
         <Route path="/" exact component={AllPlayers} />
-        <Route path="/add-player" component={AddPlayer} />
+        <Route path="/create-player" component={CreatePlayer} />
         <Route path="/favorites" component={Favorites} />
       </Switch>
     </BaseLayout>

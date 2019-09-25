@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
 import { Form, Button, Card, Table, Container, Row, Col } from "react-bootstrap"
-import AddPlayer from "./AddPlayer"
 
 function AllPlayers() {
   const [players, setPlayers] = useState([])
