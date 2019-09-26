@@ -55,7 +55,7 @@ function AllPlayers() {
         id: e.target.dataset.id
       })
       .then(response => {
-        console.log(response.data)
+        setPlayerInBuilderSlot(playerInBuilderSlot.concat(response.data))
       })
   }
 
@@ -66,128 +66,40 @@ function AllPlayers() {
           <Row>
             <Col>
               <h1>PLAYERS</h1>
-              <ListGroup>
-                <ListGroup.Item>
-                  <Row>
-                    <Col>
-                      <Image
-                        className="player-builder-photo"
-                        src="https://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3468.png&w=350&h=254"
-                        rounded
-                      />
-                    </Col>
-                    <Col>
-                      <h3>Russell Westbrook</h3>
-                      <span>Point Guard</span>
-                    </Col>
-                    <Col>
-                      <Button
-                        onClick={() => {
-                          removePlayerFromBuilder()
-                        }}
-                      >
-                        Remove
-                      </Button>
-                    </Col>
-                  </Row>
-                </ListGroup.Item>
-              </ListGroup>
-              <ListGroup.Item>
-                <Row>
-                  <Col>
-                    <Image
-                      className="player-builder-photo"
-                      src="https://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3992.png&w=350&h=254"
-                      rounded
-                    />
-                  </Col>
-                  <Col>
-                    <h3>James Harden</h3>
-                    <span>Shooting Guard</span>
-                  </Col>
-                  <Col>
-                    <Button
-                      onClick={() => {
-                        removePlayerFromBuilder()
-                      }}
-                    >
-                      Remove
-                    </Button>
-                  </Col>
-                </Row>
-              </ListGroup.Item>
-              <ListGroup.Item>
-                <Row>
-                  <Col>
-                    <Image
-                      className="player-builder-photo"
-                      src="https://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3431.png&w=350&h=254"
-                      rounded
-                    />
-                  </Col>
-                  <Col>
-                    <h3>Eric Gordon</h3>
-                    <span>Small Forward</span>
-                  </Col>
-                  <Col>
-                    <Button
-                      onClick={() => {
-                        removePlayerFromBuilder()
-                      }}
-                    >
-                      Remove
-                    </Button>
-                  </Col>
-                </Row>
-              </ListGroup.Item>
-              <ListGroup.Item>
-                <Row>
-                  <Col>
-                    <Image
-                      className="player-builder-photo"
-                      src="https://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3033.png&w=350&h=254"
-                      rounded
-                    />
-                  </Col>
-                  <Col>
-                    <h3>PJ Tucker</h3>
-                    <span>Power Forward</span>
-                  </Col>
-                  <Col>
-                    <Button
-                      onClick={() => {
-                        removePlayerFromBuilder()
-                      }}
-                    >
-                      Remove
-                    </Button>
-                  </Col>
-                </Row>
-              </ListGroup.Item>
-              <ListGroup.Item>
-                <Row>
-                  <Col>
-                    <Image
-                      className="player-builder-photo"
-                      src="https://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3102529.png&w=350&h=254"
-                      rounded
-                    />
-                  </Col>
-                  <Col>
-                    <h3>Clint Capela</h3>
-                    <span>Center</span>
-                  </Col>
-                  <Col>
-                    <Button
-                      onClick={() => {
-                        removePlayerFromBuilder()
-                      }}
-                    >
-                      Remove
-                    </Button>
-                  </Col>
-                </Row>
-              </ListGroup.Item>
+              {playerInBuilderSlot.map(player => {
+                return (
+                  <div>
+                    <ListGroup>
+                      <ListGroup.Item>
+                        <Row>
+                          <Col>
+                            <Image
+                              className="player-builder-photo"
+                              src={player.photoUrl}
+                              rounded
+                            />
+                          </Col>
+                          <Col>
+                            <h3>
+                              {player.firstName} {player.lastName}
+                            </h3>
+                            <span>{player.position}</span>
+                          </Col>
+                          <Col>
+                            <Button
+                              onClick={() => {
+                                removePlayerFromBuilder()
+                              }}
+                            >
+                              Remove
+                            </Button>
+                          </Col>
+                        </Row>
+                      </ListGroup.Item>
+                    </ListGroup>
+                  </div>
+                )
+              })}
             </Col>
             <Col>
               <h1>STATS</h1>
