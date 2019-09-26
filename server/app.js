@@ -55,7 +55,7 @@ app.post("/create-player", (req, res) => {
   res.json({ Sucess: true })
 })
 
-//Search Functionality For Player
+//Search For Player
 app.post("/search-player", (req, res) => {
   let searchTextValue = req.body.searchTextValue
   console.log(searchTextValue)
@@ -71,6 +71,19 @@ app.post("/search-player", (req, res) => {
     }
   }).then(players => {
     res.json(players)
+  })
+})
+
+app.post("/picked-player", (req, res) => {
+  let id = req.body.id
+  console.log(id)
+
+  models.Player.findOne({
+    where: {
+      id: id
+    }
+  }).then(player => {
+    res.json(player)
   })
 })
 

@@ -9,12 +9,16 @@ import {
   Container,
   Row,
   Col,
-  Jumbotron
+  Jumbotron,
+  Image,
+  ProgressBar,
+  ListGroup
 } from "react-bootstrap"
 
 function AllPlayers() {
   const [players, setPlayers] = useState([])
   const [searchTextValue, setSearchTextvalue] = useState("")
+  const [playerInBuilderSlot, setPlayerInBuilderSlot] = useState([])
 
   useEffect(() => {
     getPlayers()
@@ -27,8 +31,8 @@ function AllPlayers() {
     })
   }
 
-  const addPlayer = () => {
-    console.log("Adding Player To Builder Component!")
+  const removePlayerFromBuilder = () => {
+    console.log("Deleting Player From Builder!")
   }
 
   const searchHanldeTextBoxChange = e => {
@@ -45,9 +49,157 @@ function AllPlayers() {
       })
   }
 
+  const addPlayerToBuilder = e => {
+    axios
+      .post("http://localhost:3001/picked-player", {
+        id: e.target.dataset.id
+      })
+      .then(response => {
+        console.log(response.data)
+      })
+  }
+
   return (
     <div>
       <Container>
+        <div className="builder-div">
+          <Row>
+            <Col>
+              <h1>PLAYERS</h1>
+              <ListGroup>
+                <ListGroup.Item>
+                  <Row>
+                    <Col>
+                      <Image
+                        className="player-builder-photo"
+                        src="https://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3468.png&w=350&h=254"
+                        rounded
+                      />
+                    </Col>
+                    <Col>
+                      <h3>Russell Westbrook</h3>
+                      <span>Point Guard</span>
+                    </Col>
+                    <Col>
+                      <Button
+                        onClick={() => {
+                          removePlayerFromBuilder()
+                        }}
+                      >
+                        Remove
+                      </Button>
+                    </Col>
+                  </Row>
+                </ListGroup.Item>
+              </ListGroup>
+              <ListGroup.Item>
+                <Row>
+                  <Col>
+                    <Image
+                      className="player-builder-photo"
+                      src="https://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3992.png&w=350&h=254"
+                      rounded
+                    />
+                  </Col>
+                  <Col>
+                    <h3>James Harden</h3>
+                    <span>Shooting Guard</span>
+                  </Col>
+                  <Col>
+                    <Button
+                      onClick={() => {
+                        removePlayerFromBuilder()
+                      }}
+                    >
+                      Remove
+                    </Button>
+                  </Col>
+                </Row>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Row>
+                  <Col>
+                    <Image
+                      className="player-builder-photo"
+                      src="https://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3431.png&w=350&h=254"
+                      rounded
+                    />
+                  </Col>
+                  <Col>
+                    <h3>Eric Gordon</h3>
+                    <span>Small Forward</span>
+                  </Col>
+                  <Col>
+                    <Button
+                      onClick={() => {
+                        removePlayerFromBuilder()
+                      }}
+                    >
+                      Remove
+                    </Button>
+                  </Col>
+                </Row>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Row>
+                  <Col>
+                    <Image
+                      className="player-builder-photo"
+                      src="https://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3033.png&w=350&h=254"
+                      rounded
+                    />
+                  </Col>
+                  <Col>
+                    <h3>PJ Tucker</h3>
+                    <span>Power Forward</span>
+                  </Col>
+                  <Col>
+                    <Button
+                      onClick={() => {
+                        removePlayerFromBuilder()
+                      }}
+                    >
+                      Remove
+                    </Button>
+                  </Col>
+                </Row>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Row>
+                  <Col>
+                    <Image
+                      className="player-builder-photo"
+                      src="https://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3102529.png&w=350&h=254"
+                      rounded
+                    />
+                  </Col>
+                  <Col>
+                    <h3>Clint Capela</h3>
+                    <span>Center</span>
+                  </Col>
+                  <Col>
+                    <Button
+                      onClick={() => {
+                        removePlayerFromBuilder()
+                      }}
+                    >
+                      Remove
+                    </Button>
+                  </Col>
+                </Row>
+              </ListGroup.Item>
+            </Col>
+            <Col>
+              <h1>STATS</h1>
+              <h3>Shooting %</h3>
+              <ProgressBar now={70.3} label={`${70.3}%`} />
+              <h3>Defense</h3>
+              <ProgressBar now={30} label={`${30}%`} />
+              <h3>Free Throw %</h3>
+              <ProgressBar now={85} label={`${85}%`} />
+            </Col>
+          </Row>
+        </div>
         <Row>
           <Col>
             <div>
@@ -144,8 +296,9 @@ function AllPlayers() {
                     </Table>
                     <Button
                       className="add-player-button"
-                      onClick={() => {
-                        addPlayer()
+                      data-id={player.id}
+                      onClick={e => {
+                        addPlayerToBuilder(e)
                       }}
                     >
                       Add Player

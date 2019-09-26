@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Form, Col, Button, Container, Jumbotron } from "react-bootstrap"
+import { Form, Col, Button, Container, Jumbotron, Image } from "react-bootstrap"
 import axios from "axios"
 
 function CreatePlayer(props) {
@@ -113,13 +113,16 @@ function CreatePlayer(props) {
   return (
     <div>
       <Container>
+        <Image
+          className="banner-img"
+          src="https://www.nba.com/rockets/sites/rockets/files/201920-0148_on_sale-web1148x442.jpg?cw=1140&ch=442&w=1148&h=442&x=4&y=0"
+          fluid
+        />
+
         <Jumbotron fluid>
           <Container>
             <h1>Create A Player</h1>
-            <p>
-              Add a player that is missing or a player you are currently playing
-              with and create the best rotations.
-            </p>
+            <p>Add a player that is missing or add yourself as a player.</p>
           </Container>
         </Jumbotron>
         <Form className="create-player-form">

@@ -32,13 +32,6 @@ export class Menu extends Component {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-        <Container>
-          <Image
-            className="banner-img"
-            src="https://www.nba.com/rockets/sites/rockets/files/201920-0148_on_sale-web1148x442.jpg?cw=1140&ch=442&w=1148&h=442&x=4&y=0"
-            fluid
-          />
-        </Container>
       </div>
     )
   }
