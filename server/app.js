@@ -9,7 +9,9 @@ app.use(express.json())
 
 // Gets All The Players From The Database
 app.get("/", (req, res) => {
-  models.Player.findAll({}).then(players => {
+  models.Player.findAll({
+    order: [["lastName", "ASC"]]
+  }).then(players => {
     res.json(players)
   })
 })
@@ -74,6 +76,7 @@ app.post("/search-player", (req, res) => {
   })
 })
 
+// Finds the player the user picked to add to rotation builder
 app.post("/picked-player", (req, res) => {
   let id = req.body.id
   console.log(id)
