@@ -1,28 +1,34 @@
 import React, { Component } from "react"
 import "../App.css"
 import { Navbar, Nav, Image, Container } from "react-bootstrap"
+import { NavLink } from "react-router-dom"
 
 export class Menu extends Component {
   render() {
     return (
       <div>
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-          <Navbar.Brand href="/">
+          <NavLink className="navbar-brand" to="/">
             <img
               className="nba-logo"
               src="https://www.iba-munich.com/wp-content/uploads/2019/05/nba-logo-vector-01-128x128.png"
             />
-          </Navbar.Brand>
+          </NavLink>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
-              <Nav.Link href="/">Search For Players</Nav.Link>
-              <Nav.Link href="/rotation-builder">Rotation Builder</Nav.Link>
-              <Nav.Link href="/create-player">Create Player</Nav.Link>
-              <Nav.Link href="/favorites">Favorite Rotations</Nav.Link>
+              <NavLink to="/" className="nav-link">
+                Search For Players
+              </NavLink>
+              <NavLink to="/rotation-builder" className="nav-link">
+                Rotation Builder
+              </NavLink>
+              <NavLink to="/create-player" className="nav-link">
+                Create Player
+              </NavLink>
             </Nav>
             <Nav>
-              <Nav.Link href="/sign-out">Sign Out</Nav.Link>
+              <NavLink to="/sign-out">Sign Out</NavLink>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
