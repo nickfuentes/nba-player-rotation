@@ -31,10 +31,6 @@ function AllPlayers() {
     })
   }
 
-  const removePlayerFromBuilder = () => {
-    console.log("Deleting Player From Builder!")
-  }
-
   const searchHanldeTextBoxChange = e => {
     setSearchTextvalue(e.target.value)
   }
@@ -57,6 +53,13 @@ function AllPlayers() {
       .then(response => {
         setPlayerInBuilderSlot(playerInBuilderSlot.concat(response.data))
       })
+  }
+
+  const removePlayerFromBuilder = e => {
+    let id = parseInt(e.target.dataset.id)
+
+    const result = playerInBuilderSlot.filter(player => player.id !== id)
+    setPlayerInBuilderSlot(result)
   }
 
   return (
@@ -87,8 +90,9 @@ function AllPlayers() {
                           </Col>
                           <Col>
                             <Button
-                              onClick={() => {
-                                removePlayerFromBuilder()
+                              data-id={player.id}
+                              onClick={e => {
+                                removePlayerFromBuilder(e)
                               }}
                             >
                               Remove
@@ -103,10 +107,14 @@ function AllPlayers() {
             </Col>
             <Col>
               <h1>STATS</h1>
-              <h3>Shooting %</h3>
+              <h3>FG %</h3>
               <ProgressBar now={70.3} label={`${70.3}%`} />
-              <h3>Defense</h3>
+              <h3>3P %</h3>
+              <ProgressBar now={35.5} label={`${35.5}%`} />
+              <h3>STL</h3>
               <ProgressBar now={30} label={`${30}%`} />
+              <h3>REB</h3>
+              <ProgressBar now={15} label={`${15}%`} />
               <h3>Free Throw %</h3>
               <ProgressBar now={85} label={`${85}%`} />
             </Col>
@@ -119,7 +127,8 @@ function AllPlayers() {
                 <Container>
                   <h1>Search For A Player</h1>
                   <p>
-                    You can type in your players name or search by team name.
+                    You can search by players first name, last name, team name
+                    or position.
                   </p>
                   <Form className="search-input">
                     <Form.Group>

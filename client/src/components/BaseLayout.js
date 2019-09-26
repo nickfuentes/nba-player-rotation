@@ -20,9 +20,6 @@ export class Menu extends Component {
               <NavLink to="/" className="nav-link">
                 Search For Players
               </NavLink>
-              <NavLink to="/rotation-builder" className="nav-link">
-                Rotation Builder
-              </NavLink>
               <NavLink to="/create-player" className="nav-link">
                 Create Player
               </NavLink>
