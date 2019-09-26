@@ -10,16 +10,27 @@ import CreatePlayer from "./components/CreatePlayer"
 import Favorites from "./components/Favorites"
 import RotationBuilder from "./components/RotationBuilder"
 
+import { createStore } from "redux"
+import { Provider } from "react-redux"
+import reducer from "./store/reducer"
+
+const store = createStore(
+  reducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+)
+
 ReactDOM.render(
   <BrowserRouter>
-    <BaseLayout>
-      <Switch>
-        <Route path="/" exact component={AllPlayers} />
-        <Route path="/rotation-builder" component={RotationBuilder} />
-        <Route path="/create-player" component={CreatePlayer} />
-        <Route path="/favorites" component={Favorites} />
-      </Switch>
-    </BaseLayout>
+    <Provider store={store}>
+      <BaseLayout>
+        <Switch>
+          <Route path="/" exact component={AllPlayers} />
+          <Route path="/rotation-builder" component={RotationBuilder} />
+          <Route path="/create-player" component={CreatePlayer} />
+          <Route path="/favorites" component={Favorites} />
+        </Switch>
+      </BaseLayout>
+    </Provider>
   </BrowserRouter>,
   document.getElementById("root")
 )

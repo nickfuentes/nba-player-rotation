@@ -112,7 +112,7 @@ function RotationBuilder() {
           <Col>
             <h1>STATS</h1>
             <h3>Shooting %</h3>
-            <ProgressBar now={70} label={`${70}%`} />
+            <ProgressBar now={70.3} label={`${70.3}%`} />
             <h3>Defense</h3>
             <ProgressBar now={30} label={`${30}%`} />
             <h3>Free Throw %</h3>
