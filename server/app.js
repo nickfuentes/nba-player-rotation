@@ -2,6 +2,7 @@ const express = require("express")
 const app = express()
 const cors = require("cors")
 const models = require("./models")
+const Op = require("Sequelize").Op
 
 app.use(cors())
 app.use(express.json())
@@ -16,9 +17,7 @@ app.get("/", (req, res) => {
 // Adds Player To Database
 app.post("/create-player", (req, res) => {
   let firstName = req.body.firstName
-  console.log(firstName)
   let lastName = req.body.lastName
-  console.log(lastName)
   let teamName = req.body.teamName
   let playerNumber = req.body.playerNumber
   let position = req.body.position
@@ -54,6 +53,25 @@ app.post("/create-player", (req, res) => {
   }).save()
 
   res.json({ Sucess: true })
+})
+
+//Search Functionality For Player
+app.post("/search-player", (req, res) => {
+  let searchTextValue = req.body.searchTextValue
+  console.log(searchTextValue)
+
+  models.Player.findAll({
+    where: {
+      [Op.or]: [
+        { firstName: searchTextValue },
+        { lastName: searchTextValue },
+        { teamName: searchTextValue },
+        { position: searchTextValue }
+      ]
+    }
+  }).then(players => {
+    res.json(players)
+  })
 })
 
 app.listen(3001, () => {

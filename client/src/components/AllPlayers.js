@@ -14,11 +14,13 @@ import {
 
 function AllPlayers() {
   const [players, setPlayers] = useState([])
+  const [searchTextValue, setSearchTextvalue] = useState("")
 
   useEffect(() => {
     getPlayers()
-  })
+  }, [])
 
+  // Request To Get All The Players From Server
   const getPlayers = () => {
     axios.get("http://localhost:3001/").then(response => {
       setPlayers(response.data)
@@ -27,6 +29,20 @@ function AllPlayers() {
 
   const addPlayer = () => {
     console.log("Adding Player To Builder Component!")
+  }
+
+  const searchHanldeTextBoxChange = e => {
+    setSearchTextvalue(e.target.value)
+  }
+
+  const searchForPlayers = () => {
+    axios
+      .post("http://localhost:3001/search-player", {
+        searchTextValue: searchTextValue
+      })
+      .then(response => {
+        setPlayers(response.data)
+      })
   }
 
   return (
@@ -43,10 +59,20 @@ function AllPlayers() {
                   </p>
                   <Form className="search-input">
                     <Form.Group>
-                      <Form.Control placeholder="Search For Players" />
+                      <Form.Control
+                        placeholder="Search For Players"
+                        name="firstName"
+                        type="text"
+                        onChange={searchHanldeTextBoxChange}
+                      />
                     </Form.Group>
-                    <Button variant="primary" type="submit">
-                      Submit
+                    <Button
+                      variant="primary"
+                      onClick={() => {
+                        searchForPlayers()
+                      }}
+                    >
+                      Search
                     </Button>
                   </Form>
                 </Container>

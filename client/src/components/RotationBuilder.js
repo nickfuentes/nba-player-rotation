@@ -10,6 +10,10 @@ import {
 } from "react-bootstrap"
 
 function RotationBuilder() {
+  const removePlayerFromBuilder = () => {
+    console.log("Removing Player From Rotation Builder!")
+  }
+
   return (
     <Container>
       <div className="builder-div">
@@ -31,7 +35,13 @@ function RotationBuilder() {
                     <span>Point Guard</span>
                   </Col>
                   <Col>
-                    <Button>Remove</Button>
+                    <Button
+                      onClick={() => {
+                        removePlayerFromBuilder()
+                      }}
+                    >
+                      Remove
+                    </Button>
                   </Col>
                 </Row>
               </ListGroup.Item>
@@ -50,7 +60,13 @@ function RotationBuilder() {
                   <span>Shooting Guard</span>
                 </Col>
                 <Col>
-                  <Button>Remove</Button>
+                  <Button
+                    onClick={() => {
+                      removePlayerFromBuilder()
+                    }}
+                  >
+                    Remove
+                  </Button>
                 </Col>
               </Row>
             </ListGroup.Item>
@@ -68,7 +84,13 @@ function RotationBuilder() {
                   <span>Small Forward</span>
                 </Col>
                 <Col>
-                  <Button>Remove</Button>
+                  <Button
+                    onClick={() => {
+                      removePlayerFromBuilder()
+                    }}
+                  >
+                    Remove
+                  </Button>
                 </Col>
               </Row>
             </ListGroup.Item>
@@ -86,7 +108,13 @@ function RotationBuilder() {
                   <span>Power Forward</span>
                 </Col>
                 <Col>
-                  <Button>Remove</Button>
+                  <Button
+                    onClick={() => {
+                      removePlayerFromBuilder()
+                    }}
+                  >
+                    Remove
+                  </Button>
                 </Col>
               </Row>
             </ListGroup.Item>
@@ -104,7 +132,13 @@ function RotationBuilder() {
                   <span>Center</span>
                 </Col>
                 <Col>
-                  <Button>Remove</Button>
+                  <Button
+                    onClick={() => {
+                      removePlayerFromBuilder()
+                    }}
+                  >
+                    Remove
+                  </Button>
                 </Col>
               </Row>
             </ListGroup.Item>

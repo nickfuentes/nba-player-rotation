@@ -17,7 +17,7 @@ export class Menu extends Component {
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
               <Nav.Link href="/">Search For Players</Nav.Link>
-              <Nav.Link href="/rotation-builder">Roation Builder</Nav.Link>
+              <Nav.Link href="/rotation-builder">Rotation Builder</Nav.Link>
               <Nav.Link href="/create-player">Create Player</Nav.Link>
               <Nav.Link href="/favorites">Favorite Rotations</Nav.Link>
             </Nav>
