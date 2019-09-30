@@ -82,11 +82,13 @@ function AllPlayers() {
 
     const result = playerInBuilderSlot.filter(player => player.id !== id)
     setPlayerInBuilderSlot(result)
-    subtractStatsFromState()
+
+    const resultMinus = playerInBuilderSlot.filter(player => player.id === id)
+
+    subtractStatsToState(resultMinus)
   }
 
   const getAvgStats = state => {
-    console.log("here")
     const numOfPlayers = playerInBuilderSlot.length
     const [FG, ThreeP, STL, REB, FT] = [
       (state.FG / numOfPlayers).toFixed(2),
@@ -104,7 +106,6 @@ function AllPlayers() {
     })
   }
 
-  // Averaging Stats Of Players In Array
   const addStatsToState = response => {
     const addFGState = response.data.fg + statsPlayerInBuilderSlot.FG
 
@@ -124,8 +125,24 @@ function AllPlayers() {
   }
 
   // Removing Player Stats From Player Builder
-  const subtractStatsFromState = () => {
-    console.log("Subtracting Player Stats From Local State!")
+  const subtractStatsToState = resultMinus => {
+    console.log(resultMinus[0].fg)
+
+    const subtractFGState = statsPlayerInBuilderSlot.FG - resultMinus[0].fg
+
+    const subtractThreePState =
+      statsPlayerInBuilderSlot.ThreeP - resultMinus[0].threep
+    const subtractSTLState = statsPlayerInBuilderSlot.STL - resultMinus[0].stl
+    const subtractREBState = statsPlayerInBuilderSlot.REB - resultMinus[0].reb
+    const subtractFTState = statsPlayerInBuilderSlot.FT - resultMinus[0].ft
+
+    setStatsPlayerInBuilderSlot({
+      FG: subtractFGState,
+      ThreeP: subtractThreePState,
+      STL: subtractSTLState,
+      REB: subtractREBState,
+      FT: subtractFTState
+    })
   }
 
   return (
