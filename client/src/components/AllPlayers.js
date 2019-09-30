@@ -14,7 +14,6 @@ import {
   ProgressBar,
   ListGroup
 } from "react-bootstrap"
-import { stat } from "fs"
 
 function AllPlayers() {
   const [players, setPlayers] = useState([])
@@ -53,17 +52,21 @@ function AllPlayers() {
       })
   }
 
+  // Adding Player To Local State In builder
   const addPlayerToBuilder = e => {
     axios
       .post("http://localhost:3001/picked-player", {
         id: e.target.dataset.id
       })
       .then(response => {
-        setPlayerInBuilderSlot(playerInBuilderSlot.concat(response.data))
-        addStatsToState(response)
+        if (playerInBuilderSlot.length <= 4) {
+          setPlayerInBuilderSlot(playerInBuilderSlot.concat(response.data))
+          addStatsToState(response)
+        }
       })
   }
 
+  // Removing Player From Local State Array
   const removePlayerFromBuilder = e => {
     let id = parseInt(e.target.dataset.id)
 
@@ -72,15 +75,21 @@ function AllPlayers() {
     subtractStatsFromState()
   }
 
+  // Averaging Stats Of Players In Array
   const addStatsToState = response => {
-    console.log(response.data)
+    const numOfPlayers = playerInBuilderSlot.length + 1
 
-    const addFGState = response.data.fg + statsPlayerInBuilderSlot.FG
+    const addFGState =
+      (response.data.fg + statsPlayerInBuilderSlot.FG) / numOfPlayers
+
     const addThreePState =
-      response.data.threep + statsPlayerInBuilderSlot.ThreeP
-    const addSTLState = response.data.stl + statsPlayerInBuilderSlot.STL
-    const addREBState = response.data.reb + statsPlayerInBuilderSlot.REB
-    const addFTState = response.data.ft + statsPlayerInBuilderSlot.FT
+      (response.data.threep + statsPlayerInBuilderSlot.ThreeP) / numOfPlayers
+    const addSTLState =
+      (response.data.stl + statsPlayerInBuilderSlot.STL) / numOfPlayers
+    const addREBState =
+      (response.data.reb + statsPlayerInBuilderSlot.REB) / numOfPlayers
+    const addFTState =
+      (response.data.ft + statsPlayerInBuilderSlot.FT) / numOfPlayers
 
     setStatsPlayerInBuilderSlot({
       ...statsPlayerInBuilderSlot,
@@ -92,6 +101,7 @@ function AllPlayers() {
     })
   }
 
+  // Removing Player Stats From Player Builder
   const subtractStatsFromState = () => {
     console.log("Subtracting Player Stats From Local State!")
   }
