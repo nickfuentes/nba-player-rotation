@@ -26,10 +26,20 @@ function AllPlayers() {
     REB: 0,
     FT: 0
   })
+  const [avgStats, setAvgStats] = useState({
+    FG: 0,
+    ThreeP: 0,
+    STL: 0,
+    REB: 0,
+    FT: 0
+  })
 
   useEffect(() => {
     getPlayers()
   }, [])
+  useEffect(() => {
+    getAvgStats(statsPlayerInBuilderSlot)
+  }, [statsPlayerInBuilderSlot])
 
   // Request To Get All The Players From Server
   const getPlayers = () => {
@@ -75,24 +85,36 @@ function AllPlayers() {
     subtractStatsFromState()
   }
 
+  const getAvgStats = state => {
+    console.log("here")
+    const numOfPlayers = playerInBuilderSlot.length
+    const [FG, ThreeP, STL, REB, FT] = [
+      (state.FG / numOfPlayers).toFixed(2),
+      state.ThreeP / numOfPlayers,
+      state.STL / numOfPlayers,
+      state.REB / numOfPlayers,
+      state.FT / numOfPlayers
+    ]
+    setAvgStats({
+      FG,
+      ThreeP,
+      STL,
+      REB,
+      FT
+    })
+  }
+
   // Averaging Stats Of Players In Array
   const addStatsToState = response => {
-    const numOfPlayers = playerInBuilderSlot.length + 1
-
-    const addFGState =
-      (response.data.fg + statsPlayerInBuilderSlot.FG) / numOfPlayers
+    const addFGState = response.data.fg + statsPlayerInBuilderSlot.FG
 
     const addThreePState =
-      (response.data.threep + statsPlayerInBuilderSlot.ThreeP) / numOfPlayers
-    const addSTLState =
-      (response.data.stl + statsPlayerInBuilderSlot.STL) / numOfPlayers
-    const addREBState =
-      (response.data.reb + statsPlayerInBuilderSlot.REB) / numOfPlayers
-    const addFTState =
-      (response.data.ft + statsPlayerInBuilderSlot.FT) / numOfPlayers
+      response.data.threep + statsPlayerInBuilderSlot.ThreeP
+    const addSTLState = response.data.stl + statsPlayerInBuilderSlot.STL
+    const addREBState = response.data.reb + statsPlayerInBuilderSlot.REB
+    const addFTState = response.data.ft + statsPlayerInBuilderSlot.FT
 
     setStatsPlayerInBuilderSlot({
-      ...statsPlayerInBuilderSlot,
       FG: addFGState,
       ThreeP: addThreePState,
       STL: addSTLState,
@@ -152,30 +174,18 @@ function AllPlayers() {
             <Col>
               <h1>STATS</h1>
               <h3>FG %</h3>
-              <ProgressBar
-                now={statsPlayerInBuilderSlot.FG}
-                label={`${statsPlayerInBuilderSlot.FG}%`}
-              />
+              <ProgressBar now={avgStats.FG} label={`${avgStats.FG}%`} />
               <h3>3P %</h3>
               <ProgressBar
-                now={statsPlayerInBuilderSlot.ThreeP}
-                label={`${statsPlayerInBuilderSlot.ThreeP}%`}
+                now={avgStats.ThreeP}
+                label={`${avgStats.ThreeP}%`}
               />
               <h3>STL</h3>
-              <ProgressBar
-                now={statsPlayerInBuilderSlot.STL}
-                label={`${statsPlayerInBuilderSlot.STL}%`}
-              />
+              <ProgressBar now={avgStats.STL} label={`${avgStats.STL}%`} />
               <h3>REB</h3>
-              <ProgressBar
-                now={statsPlayerInBuilderSlot.REB}
-                label={`${statsPlayerInBuilderSlot.REB}%`}
-              />
+              <ProgressBar now={avgStats.REB} label={`${avgStats.REB}%`} />
               <h3>Free Throw %</h3>
-              <ProgressBar
-                now={statsPlayerInBuilderSlot.FT}
-                label={`${statsPlayerInBuilderSlot.FT}%`}
-              />
+              <ProgressBar now={avgStats.FT} label={`${avgStats.FT}%`} />
             </Col>
           </Row>
         </div>
