@@ -14,11 +14,19 @@ import {
   ProgressBar,
   ListGroup
 } from "react-bootstrap"
+import { stat } from "fs"
 
 function AllPlayers() {
   const [players, setPlayers] = useState([])
   const [searchTextValue, setSearchTextvalue] = useState("")
   const [playerInBuilderSlot, setPlayerInBuilderSlot] = useState([])
+  const [statsPlayerInBuilderSlot, setStatsPlayerInBuilderSlot] = useState({
+    FG: 0,
+    ThreeP: 0,
+    STL: 0,
+    REB: 0,
+    FT: 0
+  })
 
   useEffect(() => {
     getPlayers()
@@ -52,6 +60,7 @@ function AllPlayers() {
       })
       .then(response => {
         setPlayerInBuilderSlot(playerInBuilderSlot.concat(response.data))
+        addStatsToState(response)
       })
   }
 
@@ -60,10 +69,31 @@ function AllPlayers() {
 
     const result = playerInBuilderSlot.filter(player => player.id !== id)
     setPlayerInBuilderSlot(result)
+    subtractStatsFromState()
   }
 
-  const addStatsToState = () => {
-    console.log("Adding Player Stats To Local State!")
+  const addStatsToState = response => {
+    console.log(response.data)
+
+    const addFGState = response.data.fg + statsPlayerInBuilderSlot.FG
+    const addThreePState =
+      response.data.threep + statsPlayerInBuilderSlot.ThreeP
+    const addSTLState = response.data.stl + statsPlayerInBuilderSlot.STL
+    const addREBState = response.data.reb + statsPlayerInBuilderSlot.REB
+    const addFTState = response.data.ft + statsPlayerInBuilderSlot.FT
+
+    setStatsPlayerInBuilderSlot({
+      ...statsPlayerInBuilderSlot,
+      FG: addFGState,
+      ThreeP: addThreePState,
+      STL: addSTLState,
+      REB: addREBState,
+      FT: addFTState
+    })
+  }
+
+  const subtractStatsFromState = () => {
+    console.log("Subtracting Player Stats From Local State!")
   }
 
   return (
@@ -112,15 +142,30 @@ function AllPlayers() {
             <Col>
               <h1>STATS</h1>
               <h3>FG %</h3>
-              <ProgressBar now={70.3} label={`${70.3}%`} />
+              <ProgressBar
+                now={statsPlayerInBuilderSlot.FG}
+                label={`${statsPlayerInBuilderSlot.FG}%`}
+              />
               <h3>3P %</h3>
-              <ProgressBar now={35.5} label={`${35.5}%`} />
+              <ProgressBar
+                now={statsPlayerInBuilderSlot.ThreeP}
+                label={`${statsPlayerInBuilderSlot.ThreeP}%`}
+              />
               <h3>STL</h3>
-              <ProgressBar now={30} label={`${30}%`} />
+              <ProgressBar
+                now={statsPlayerInBuilderSlot.STL}
+                label={`${statsPlayerInBuilderSlot.STL}%`}
+              />
               <h3>REB</h3>
-              <ProgressBar now={15} label={`${15}%`} />
+              <ProgressBar
+                now={statsPlayerInBuilderSlot.REB}
+                label={`${statsPlayerInBuilderSlot.REB}%`}
+              />
               <h3>Free Throw %</h3>
-              <ProgressBar now={85} label={`${85}%`} />
+              <ProgressBar
+                now={statsPlayerInBuilderSlot.FT}
+                label={`${statsPlayerInBuilderSlot.FT}%`}
+              />
             </Col>
           </Row>
         </div>
