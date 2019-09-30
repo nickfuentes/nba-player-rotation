@@ -90,10 +90,10 @@ function AllPlayers() {
     const numOfPlayers = playerInBuilderSlot.length
     const [FG, ThreeP, STL, REB, FT] = [
       (state.FG / numOfPlayers).toFixed(2),
-      state.ThreeP / numOfPlayers,
-      state.STL / numOfPlayers,
-      state.REB / numOfPlayers,
-      state.FT / numOfPlayers
+      (state.ThreeP / numOfPlayers).toFixed(2),
+      (state.STL / numOfPlayers).toFixed(2),
+      (state.REB / numOfPlayers).toFixed(2),
+      (state.FT / numOfPlayers).toFixed(2)
     ]
     setAvgStats({
       FG,
