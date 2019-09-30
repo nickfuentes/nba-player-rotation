@@ -62,6 +62,10 @@ function AllPlayers() {
     setPlayerInBuilderSlot(result)
   }
 
+  const addStatsToState = () => {
+    console.log("Adding Player Stats To Local State!")
+  }
+
   return (
     <div>
       <Container>
