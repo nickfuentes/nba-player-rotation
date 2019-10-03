@@ -24,9 +24,6 @@ export class Menu extends Component {
                 Create Player
               </NavLink>
             </Nav>
-            <Nav>
-              <NavLink to="/sign-out">Sign Out</NavLink>
-            </Nav>
           </Navbar.Collapse>
         </Navbar>
       </div>
